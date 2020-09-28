@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.compteur;
+package fr.ufrsciencestech.compteur.view;
 
+import fr.ufrsciencestech.compteur.view.VueConsole;
+import fr.ufrsciencestech.compteur.model.Modele;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

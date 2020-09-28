@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.compteur;
+package fr.ufrsciencestech.compteur.view;
 
-import java.util.Observable;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import fr.ufrsciencestech.compteur.TestUtils;
+import fr.ufrsciencestech.compteur.controler.Controleur;
+import fr.ufrsciencestech.compteur.model.Modele;
+import java.awt.Button;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,14 +20,14 @@ import static org.junit.Assert.*;
  *
  * @author celine
  */
-public class VueGraphiqueTest {
-    private static VueGraphique vueg;
+public class VueGraphAWTTest {
+    private static VueGraphAWT vueg;
     private Controleur c;
     private Modele m;
 
     @Before
     public void setUp() {
-        vueg = new VueGraphique();
+        vueg = new VueGraphAWT();
         m = new Modele();
         c = new Controleur();
         
@@ -51,7 +54,7 @@ public class VueGraphiqueTest {
         m.setCompteur(4); 
         assertEquals(vueg.getAffiche().getText(), "4");
         
-        vueg.setAffiche(new JLabel("0", JLabel.CENTER));
+        vueg.setAffiche(new Label("0", Label.CENTER));
         assertEquals(vueg.getAffiche().getText(), "0");       
     }
     
@@ -60,15 +63,18 @@ public class VueGraphiqueTest {
     public void testIncr() {
         System.out.println("incr");
         assertNotNull(vueg);  // Instantiated?
-        JLabel res = (JLabel)TestUtils.getChildNamed(vueg, "Affichage");
+        Label res = (Label)TestUtils.getChildNamed(vueg, "Affichage");
         assertNotNull(res); // Component found?
-        final JButton plus = (JButton)TestUtils.getChildNamed(vueg, "Plus");
+        final Button plus = (Button)TestUtils.getChildNamed(vueg, "Plus");
         assertNotNull(plus);
         
         //tests d'acceptation (de l'interface) : 
-        plus.doClick();
+        //plus.doClick(); //ne marche pas avec AWT
+        ActionEvent ae = new ActionEvent((Object)plus, ActionEvent.ACTION_PERFORMED, "");
+        plus.dispatchEvent(ae);  
+        
         assertEquals(res.getText(), "1");
-        plus.doClick();
+        plus.dispatchEvent(ae); 
         assertEquals(res.getText(), "2");
     }
     
@@ -77,17 +83,21 @@ public class VueGraphiqueTest {
     public void testDecrOk() {
         System.out.println("decr");
         assertNotNull(vueg);  // Instantiated?
-        JLabel res = (JLabel)TestUtils.getChildNamed(vueg, "Affichage");
+        Label res = (Label)TestUtils.getChildNamed(vueg, "Affichage");
         assertNotNull(res); // Component found?
-        final JButton plus = (JButton)TestUtils.getChildNamed(vueg, "Plus");
+        final Button plus = (Button)TestUtils.getChildNamed(vueg, "Plus");
         assertNotNull(plus);
-        final JButton minus = (JButton)TestUtils.getChildNamed(vueg, "Moins");
+        final Button minus = (Button)TestUtils.getChildNamed(vueg, "Moins");
         assertNotNull(minus);
         
         //tests d'acceptation (de l'interface) : 
-        plus.doClick();
+        //plus.doClick(); //ne marche pas avec AWT
+        ActionEvent ae = new ActionEvent((Object)plus, ActionEvent.ACTION_PERFORMED, "");
+        plus.dispatchEvent(ae); 
         assertEquals(res.getText(), "1");
-        minus.doClick();
+        
+        ActionEvent ae2 = new ActionEvent((Object)minus, ActionEvent.ACTION_PERFORMED, "");
+        minus.dispatchEvent(ae2); 
         assertEquals(res.getText(), "0");
     }
     
@@ -95,14 +105,14 @@ public class VueGraphiqueTest {
     public void testDecrZero() {
         System.out.println("remove");
         assertNotNull(vueg);  // Instantiated?
-        JLabel res = (JLabel)TestUtils.getChildNamed(vueg, "Affichage");
+        Label res = (Label)TestUtils.getChildNamed(vueg, "Affichage");
         assertNotNull(res); // Component found?
-        final JButton minus = (JButton)TestUtils.getChildNamed(vueg, "Moins");
+        final Button minus = (Button)TestUtils.getChildNamed(vueg, "Moins");
         assertNotNull(minus);
         
         //tests d'acceptation (de l'interface) : 
-        minus.doClick();
+        ActionEvent ae = new ActionEvent((Object)minus, ActionEvent.ACTION_PERFORMED, "");
+        minus.dispatchEvent(ae); 
         assertEquals(res.getText(), "0");
     }
-
 }

@@ -10,8 +10,8 @@ and open the template in the editor.
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
         <!-- ===== Déclaration des Managers ===== -->
-	<bean id="Controleur" class="fr.ufrsciencestech.compteur.Controleur"></bean>
-        <bean id="Vue" class="fr.ufrsciencestech.compteur.VueGraphique"></bean>
+	<bean id="Controleur" class="fr.ufrsciencestech.compteur.controler.Controleur"></bean>
+        <bean id="Vue" class="fr.ufrsciencestech.compteur.view.VueGraphSwing"></bean>
 
         <!-- ===== ManagerFactory ===== -->
 	<bean id="MVC" class="fr.ufrsciencestech.compteur.TestMVC">

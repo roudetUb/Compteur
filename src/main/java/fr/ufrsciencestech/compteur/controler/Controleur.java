@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.compteur;
+package fr.ufrsciencestech.compteur.controler;
 
+import fr.ufrsciencestech.compteur.view.*;
+import fr.ufrsciencestech.compteur.model.Modele;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -14,7 +16,7 @@ import java.awt.event.*;
  */
 public class Controleur implements ActionListener {
     private Modele m;
-    private VueGraphique vg;
+    private VueG vg;
     
     @Override
     public void actionPerformed(ActionEvent e){   //Invoked when an action occurs
@@ -26,7 +28,7 @@ public class Controleur implements ActionListener {
     public void setModele(Modele m){
         this.m = m;
     }
-    public void setVue(VueGraphique vg){
+    public void setVue(VueG vg){
         this.vg = vg;
     }
 }

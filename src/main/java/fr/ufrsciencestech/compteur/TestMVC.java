@@ -5,9 +5,12 @@
  */
 package fr.ufrsciencestech.compteur;
 
-import javax.swing.*;
+import fr.ufrsciencestech.compteur.controler.Controleur;
+import fr.ufrsciencestech.compteur.view.*;
+import fr.ufrsciencestech.compteur.model.Modele;
 
-//pour springIoC :
+//utilise pour springIoC :
+import javax.swing.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,20 +19,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author celine
  */
 public class TestMVC {
-    private VueGraphique vueg;      //pour pouvoir changer de vue si on le souhaite
+    private VueG vueg;      //pour pouvoir changer de vue si on le souhaite
     private Controleur controleur;  //pour pouvoir changer de controleur si on le souhaite
     
     /**
      * @return the vueg
      */
-    public VueGraphique getVueg() {
+    public VueG getVueg() {
         return vueg;
     }
 
     /**
      * @param vueg the vueg to set
      */
-    public void setVueg(VueGraphique vueg) {
+    public void setVueg(VueG vueg) {
         this.vueg = vueg;
     }
 
@@ -50,7 +53,7 @@ public class TestMVC {
     
     public TestMVC(){
         //sans utiliser SpringIoC :
-        vueg = new VueGraphique();
+        vueg = new VueGraphSwing();
         controleur = new Controleur();
         Modele modele = new Modele();
         VueConsole vuec = new VueConsole();
@@ -59,10 +62,6 @@ public class TestMVC {
         modele.addObserver(vueg);        
         modele.addObserver(vuec);         
         vueg.addControleur(controleur);
-        
-        vueg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        vueg.pack();
-        vueg.setVisible(true);
     }
     
     public static void main(String[] args){
@@ -71,10 +70,9 @@ public class TestMVC {
         //La meme chose mais avec SpringIoC :
         /*ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         TestMVC test = (TestMVC)context.getBean("MVC");  //SpringIoC
-        //test.controleur = (Controleur)context.getBean("Controleur");  //SpringIoC
-
-        test.setControleur(new Controleur());
-        test.setVueg(new VueGraphique());
+        test.setControleur( (Controleur)context.getBean("Controleur") );  //SpringIoC
+        test.setVueg( (VueG)context.getBean("Vue") );   //SpringIoC
+         
         Modele m = new Modele(); 
         test.getControleur().setModele(m);  
         
@@ -82,9 +80,6 @@ public class TestMVC {
         test.getVueg().addControleur(test.getControleur());
         
         VueConsole vuec = new VueConsole();
-        m.addObserver(vuec);  
-        test.getVueg().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        test.getVueg().pack();
-        test.getVueg().setVisible(true);*/
+        m.addObserver(vuec);  */
     }
 }

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.compteur;
+package fr.ufrsciencestech.compteur.controler;
 
+import fr.ufrsciencestech.compteur.view.VueGraphSwing;
+import fr.ufrsciencestech.compteur.model.Modele;
 import java.awt.event.ActionEvent;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,7 +20,7 @@ public class ControleurTest {
     Controleur c1;
     Controleur c2;
     Modele m1, m2;
-    VueGraphique vueg;
+    VueGraphSwing vueg;
     ActionEvent einc;
     ActionEvent edec;
 
@@ -32,7 +33,7 @@ public class ControleurTest {
         c2 = new Controleur();
         m1 = new Modele();
         m2 = new Modele();
-        vueg = new VueGraphique(); 
+        vueg = new VueGraphSwing(); 
         c1.setModele(m1);
         
         edec = new ActionEvent(vueg.getDec(), 1, "dec");

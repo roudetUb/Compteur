@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.compteur;
+package fr.ufrsciencestech.compteur.model;
 
+import fr.ufrsciencestech.compteur.model.Modele;
 import static junit.framework.Assert.*;
 import org.junit.*;
 

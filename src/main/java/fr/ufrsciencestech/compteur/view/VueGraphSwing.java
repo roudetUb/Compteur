@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.compteur;
+package fr.ufrsciencestech.compteur.view;
 
-import fr.ufrsciencestech.compteur.Controleur;
-import fr.ufrsciencestech.compteur.Controleur;
-import java.awt.event.*;
+import fr.ufrsciencestech.compteur.controler.Controleur;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
@@ -16,13 +14,13 @@ import java.util.*;
  *
  * @author celine
  */
-public class VueGraphique extends JFrame implements Observer{
+public class VueGraphSwing extends JFrame implements VueG{
     private JButton inc;
     private JButton dec;
     private JLabel affiche;
     
-    public VueGraphique(){
-        super ("Compteur");
+    public VueGraphSwing(){
+        super ("CompteurSwing");
         inc = new JButton("+");
         dec = new JButton("-");
         affiche = new JLabel("0", JLabel.CENTER);
@@ -33,6 +31,9 @@ public class VueGraphique extends JFrame implements Observer{
         inc.setName("Plus");
         dec.setName("Moins");
         affiche.setName("Affichage");
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void addControleur(Controleur c){
