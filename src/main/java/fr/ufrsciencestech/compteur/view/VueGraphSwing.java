@@ -6,9 +6,10 @@
 package fr.ufrsciencestech.compteur.view;
 
 import fr.ufrsciencestech.compteur.controler.Controleur;
+import fr.ufrsciencestech.compteur.model.Modele;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
 import javax.swing.*;
-import java.util.*;
 
 /**
  *
@@ -41,9 +42,16 @@ public class VueGraphSwing extends JFrame implements VueG{
         getDec().addActionListener(c);
     }
     
+    
+    //public void update(Observable m, Object compte){     //This method is called whenever the observed object is changed
+    //      getAffiche().setText(((Integer) compte).toString());
+    //}
     @Override
-    public void update(Observable m, Object compte){     //This method is called whenever the observed object is changed
-        getAffiche().setText(((Integer) compte).toString());
+    public void propertyChange(PropertyChangeEvent evt){
+        Modele m = (Modele) evt.getSource();
+        getAffiche().setText(((Integer)m.getCompteur()).toString());
+        
+        
     }
 
     /**

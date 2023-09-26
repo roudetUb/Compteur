@@ -5,13 +5,16 @@
  */
 package fr.ufrsciencestech.compteur.view;
 
+import fr.ufrsciencestech.compteur.model.Modele;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.*;
 
 /**
  *
  * @author celine
  */
-public class VueConsole implements Observer{
+public class VueConsole implements PropertyChangeListener { //implements Observer{
     private String trace;
     
     /**
@@ -33,8 +36,12 @@ public class VueConsole implements Observer{
         System.out.println(trace);
     }
     
-    public void update(Observable m, Object compte){   //This method is called whenever the observed object is changed
-        trace = "Nouvelle valeur : " + ((Integer) compte).toString();
+    //public void update(Observable m, Object compte){   //This method is called whenever the observed object is changed
+    @Override
+    public void propertyChange(PropertyChangeEvent evt){
+        Modele m = (Modele) evt.getSource();
+        
+        trace = "Nouvelle valeur : " + m.getCompteur();
         System.out.println(trace);
     }
 }

@@ -1,11 +1,13 @@
 package fr.ufrsciencestech.compteur.view;
 
 import fr.ufrsciencestech.compteur.controler.Controleur;
+import fr.ufrsciencestech.compteur.model.Modele;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
 import java.util.Observable;
-import java.util.Observer;
+//import java.util.Observer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -95,7 +97,9 @@ public class VueGraphAWT extends Frame implements VueG{
     }
     
     @Override
-    public void update(Observable m, Object compte){     //This method is called whenever the observed object is changed
-        getAffiche().setText(((Integer) compte).toString());
+    //public void update(Observable m, Object compte){     //This method is called whenever the observed object is changed
+    public void propertyChange(PropertyChangeEvent evt){
+        Modele m = (Modele) evt.getSource();
+        getAffiche().setText(((Integer)m.getCompteur()).toString());
     }
 }

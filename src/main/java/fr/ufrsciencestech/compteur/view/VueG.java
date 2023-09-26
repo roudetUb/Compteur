@@ -1,7 +1,8 @@
 package fr.ufrsciencestech.compteur.view;
 
 import fr.ufrsciencestech.compteur.controler.Controleur;
-import java.util.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,9 +14,10 @@ import java.util.*;
  *
  * @author celine
  */
-public interface VueG extends Observer {
+public interface VueG extends PropertyChangeListener { //extends Observer {
     @Override
-    public void update(Observable m, Object o);
+    public void propertyChange(PropertyChangeEvent evt);
+    //public void update(Observable m, Object o);
     public void addControleur(Controleur c);
     
 }
