@@ -37,11 +37,17 @@ public class VueConsole implements PropertyChangeListener { //implements Observe
     }
     
     //public void update(Observable m, Object compte){   //This method is called whenever the observed object is changed
+    //}
     @Override
     public void propertyChange(PropertyChangeEvent evt){
         Modele m = (Modele) evt.getSource();
         
         trace = "Nouvelle valeur : " + m.getCompteur();
         System.out.println(trace);
+        
+        /*System.out.println("Variation of " + evt.getPropertyName());
+	System.out.println("\t(" + evt.getOldValue() + 
+							" -> " + evt.getNewValue() + ")");
+	System.out.println("Property in object " + evt.getSource());*/
     }
 }
